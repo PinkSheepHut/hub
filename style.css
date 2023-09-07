@@ -95,7 +95,7 @@ a, a:is(:link, :visited, :hover, :active) {
     display: block;
     position: absolute;
     text-align: center;
-    filter: drop-shadow(0 0 30px black) drop-shadow(0 0 30px black);
+    filter: drop-shadow(0 0 5vmin black) drop-shadow(0 0 5vmin black);
     z-index: 1;
 }
 
@@ -196,7 +196,7 @@ a, a:is(:link, :visited, :hover, :active) {
     aspect-ratio: 1 / 1;
     rotate: 45deg;
     background: white;
-    box-shadow: 0px 0px 15px coral, 0px 0px 25px coral;
+    box-shadow: 0px 0px 3vmin coral, 0px 0px 5vmin coral;
     animation: spark var(--d) infinite linear;
 }
 
@@ -237,11 +237,11 @@ a, a:is(:link, :visited, :hover, :active) {
     aspect-ratio: 1 / 1;
     margin: auto;
     z-index: -1;
-    filter: blur(5vh);
+    filter: blur(5vmin);
 }
 
 svg {
-    filter: drop-shadow(0px 0px 5px var(--light));
+    filter: drop-shadow(0px 0px 1vmax var(--light));
     display: block;
     margin: auto 0;
 }
