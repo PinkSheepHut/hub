@@ -1,66 +1,66 @@
 @media screen and (orientation: landscape) {
     :root {
-        --for-sections: to bottom, transparent 0%, black 10svh, black calc(100% - 10svh), transparent 100%;
-        --button-border: 2.75svh;
+        --for-sections: to bottom, transparent 0%, black 10vmin, black calc(100% - 10vmin), transparent 100%;
+        --button-border: 2.75vmin;
 
-        --for-content: to bottom, transparent 0%, transparent 7.5svh, black 12.5svh, black calc(100% - 15svh), transparent 100%;
-        --indent: 10svh;
+        --for-content: to bottom, transparent 0%, transparent 7.5vmin, black 12.5vmin, black calc(100% - 15vmin), transparent 100%;
+        --indent: 10vmin;
     }
 
     body {
-        font-size: min(1.5em, 2.5svh + 0.25em);
+        font-size: min(1.5em, 2.5vmin + 0.25em);
     }
     
     #image {
         position: fixed;
-        bottom: clamp(0px, 100svw - 150svh, 5svh);
-        right: min(50svw, 100svw - 90svh);
+        bottom: clamp(0px, 100vmax - 150vmin, 5vmin);
+        right: min(50vmax, 100vmax - 90vmin);
         aspect-ratio: 1 / 1;
-        width: 90svh;
+        width: 90vmin;
     }
     
     #info {
         aspect-ratio: 1 / 1;
-        width: 100svh;
-        left: min(50svw, 100svw - 100svh);
+        width: 100vmin;
+        left: min(50vmax, 100vmax - 100vmin);
     }
     
     .section {
-        width: 100svh;
-        padding: 7.5svh 2.5svh clamp(15svh, 100svh - 70svw, 30svh) clamp(0px, 100svh - 70svw, 30svh);
+        width: 100vmin;
+        padding: 7.5vmin 2.5vmin clamp(15vmin, 100vmin - 70vmax, 30vmin) clamp(0px, 100vmin - 70vmax, 30vmin);
     }
 
     .section .header {
-        inset: 10svh 2.5svh auto clamp(0px, 100svh - 70svw, 30svh);
+        inset: 10vmin 2.5vmin auto clamp(0px, 100vmin - 70vmax, 30vmin);
     }
     
     .section .content {
-        padding: var(--indent) 2.5svh;
+        padding: var(--indent) 2.5vmin;
     }
 
     .section .footer {
-        min-height: 10svh;
+        min-height: 10vmin;
     }
 }
 
 @media screen and (orientation: portrait) {
     :root {
-        --for-sections: to bottom, transparent 0%, black 10svw, black calc(100% - 10svw), transparent 100%;
-        --button-border: 2.75svw;
+        --for-sections: to bottom, transparent 0%, black 10vmin, black calc(100% - 10vmin), transparent 100%;
+        --button-border: 2.75vmin;
 
-        --for-content: to bottom, transparent 0%, transparent 7.5svw, black 12.5svw, black calc(100% - 15svw), transparent 100%;
-        --indent: 10svw;
+        --for-content: to bottom, transparent 0%, transparent 7.5vmin, black 12.5vmin, black calc(100% - 15vmin), transparent 100%;
+        --indent: 10vmin;
     }
 
     body {
-        font-size: min(1em, 3svw + 0.25em);
+        font-size: min(1em, 3vmin + 0.25em);
     }
     
     #image {
         left: 0;
         bottom: 0;
         aspect-ratio: 1 / 1;
-        width: 90svw;
+        width: 90vmin;
     }
     
     #info {
@@ -69,19 +69,19 @@
 
 
     .section {
-        width: 100svw;
-        padding: 7.5svw 2.5svw 30svw 30svw;
+        width: 100vmin;
+        padding: 7.5vmin 2.5vmin 30vmin 30vmin;
     }
 
     .header {
-        inset: 10svw 2.5svw auto 30svw;
+        inset: 10vmin 2.5vmin auto 30vmin;
     }
     
     .content {
-        padding: var(--indent) 2.5svw;
+        padding: var(--indent) 2.5vmin;
     }
 
     .footer {
-        min-height: 10svw;
+        min-height: 10vmin;
     }
 }
