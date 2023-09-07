@@ -1,0 +1,284 @@
+@font-face {
+    font-family: 'Kurale';
+    src: url(fonts/Kurale-Regular.ttf);
+}
+/* -------------------- */
+/* ----- Страница ----- */
+/* -------------------- */
+
+:root {
+    --default-background: hsl(7, 24%, 2.5%);
+    --background-light: hsl(0, 60%, 5%);
+    --light: #ff7f5080;
+    --animation-duration: 10s;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10v' height='10'><path stroke='white' fill='white' d='M 0 10 L 0 0 L 10 0 Z'/></svg>"), none;
+}
+
+body {
+    color: white;
+    font-family: 'Kurale';
+    background: var(--default-background);
+    background-attachment: fixed;
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+a, a:is(:link, :visited, :hover, :active) {
+    color: white;
+    text-decoration: none;
+}
+
+#pagewrap {
+    inset: 0;
+}
+
+#pagewrap, #image, #info, .section {
+    position: fixed;
+}
+
+#info {
+    display: block;
+    overflow: visible scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: 0;
+}
+
+#info::-webkit-scrollbar {
+    display: none;
+}
+    
+.mask {
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+    -webkit-mask-image: -webkit-linear-gradient(var(--for-sections));
+    -webkit-mask-image: linear-gradient(var(--for-sections));
+    mask-image: linear-gradient(var(--for-sections));
+}
+
+.section {
+    top: 0;
+    bottom: 0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.mask:last-child .section .footer a {
+    border-width: var(--button-border) 0 0 var(--button-border);
+}
+
+@keyframes button-bounce {
+    0%, 100% {
+        translate: 0 -50%;
+    }
+    50% {
+        translate: 0;
+    }
+}
+
+.header {
+    display: block;
+    position: absolute;
+    text-align: center;
+    filter: drop-shadow(0 0 30px black) drop-shadow(0 0 30px black);
+    z-index: 1;
+}
+
+.content {
+    pointer-events: all;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5em;
+    -webkit-mask-image: -webkit-linear-gradient(var(--for-content));
+    -webkit-mask-image: linear-gradient(var(--for-content));
+    mask-image: linear-gradient(var(--for-content));
+    overflow: hidden scroll;
+    scrollbar-width: 0;
+}
+
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+.content p {
+    text-indent: 15%;
+    text-shadow: 0 0 1em black, 0 0 1em black, 0 0 2em black, 0 0 2em black;
+}
+
+.content p:first-of-type {
+    margin-top: var(--indent);
+}
+
+.link {
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+}
+    
+.link a, .link span {
+    margin: 1em 0;
+    text-shadow: 0 0 1em coral, 0 0 2em coral;
+    animation: button-bounce var(--animation-duration) infinite ease-in-out;
+}
+    
+.link a::before, .link a::after, .link span::before, .link span::after {
+    content: " ◆ ";
+    font-size: 75%;
+}
+
+.link a {
+    transition: all 0.2s linear;
+}
+
+.link a:is(:hover, :focus, :active) {
+    text-shadow: 0 0 1em coral, 0 0 2em coral, 0 0 3em coral;
+    scale: .95;
+}
+
+.link span {
+    color: wheat;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer a {
+    pointer-events: all;
+    aspect-ratio: 1 / 1;
+    height: 50%;
+    rotate: 45deg;
+    border: 0 solid white;
+    border-width: 0 var(--button-border) var(--button-border) 0;
+    filter: drop-shadow(0px 0px 1em coral) drop-shadow(0px 0px 2em coral);
+    animation: button-bounce calc(var(--animation-duration) / 2) infinite ease-in-out;
+    transition: all 0.2s linear;
+}
+
+.footer a:active {
+    opacity: 0.5;
+}
+
+.footer a:is(:hover, :focus, :active) {
+    background: white;
+}
+
+/* ----------------------- */
+/* ------- Частицы ------- */
+/* ----------------------- */
+
+.particle {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: var(--s);
+    z-index: var(--z);
+    aspect-ratio: 1 / 1;
+    rotate: 45deg;
+    background: white;
+    box-shadow: 0px 0px 15px coral, 0px 0px 25px coral;
+    animation: spark var(--d) infinite linear;
+}
+
+@keyframes spark {
+    0% {
+        translate: var(--x1) var(--y1);
+        opacity: 0;
+    }
+    10%, 30%, 50%, 70%, 90% {
+        opacity: 1;
+    }
+    20%, 40%, 60%, 80% {
+        opacity: 0.5;
+    }
+    100% {
+        translate: var(--x2) var(--y2);
+        opacity: 0;
+    }
+}
+
+/* ----------------------------- */
+/* -------- Изображение -------- */
+/* ----------------------------- */
+
+#image {
+    pointer-events: none;
+}
+
+#image::before {
+    content: "";
+    background: var(--background-light);
+    border-radius: 100%;
+    position: absolute;
+    display: block;
+    left: -25%;
+    bottom: -50%;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin: auto;
+    z-index: -1;
+    filter: blur(5vh);
+}
+
+svg {
+    filter: drop-shadow(0px 0px 5px var(--light));
+    display: block;
+    margin: auto 0;
+}
+
+path {
+    fill-opacity: 1;
+    stroke-width: 111.13;
+}
+    
+path.dress { fill: #feb979; }
+
+path.dark-dress { fill: #f99f62; }
+
+path.leggins { fill: #ce7b5e; }
+
+path.dark-leggins { fill: #b26b51; }
+
+path.horns-and-hooves { fill: #804636; }
+
+path.fur { fill: #b56a52; }
+
+path.dark-fur { fill: #9a5a46; }
+
+path.cape { 
+    fill: #552121; 
+    fill-opacity: .8; 
+}
+
+#head {
+    transform-origin: 15.5px 60px;
+	animation: head-move var(--animation-duration) ease-in-out infinite normal forwards;
+}
+
+@keyframes head-move { 
+	0%, 100% {transform: translate(0px, 0px) rotate(0);
+	} 
+	50% {
+		transform: translate(0px, -0.35px) rotate(-2.5deg);
+	}
+}
