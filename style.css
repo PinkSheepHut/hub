@@ -130,8 +130,8 @@ a, a:is(:link, :visited, :hover, :active) {
 .progressbar {
     position: relative;
     margin: 15vmin 1.5vmin;
-    min-width: .25vmin;
-    --progress: to bottom, wheat var(--p), rgba(245, 222, 179, .5) var(--p);
+    min-width: max(.25vmin, 1px);
+    --progress: to bottom, wheat var(--p), rgba(245, 222, 179, .25) var(--p);
     background: linear-gradient(var(--progress));
 }
 
