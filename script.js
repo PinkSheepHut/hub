@@ -1,6 +1,6 @@
 function onload() {
-    loadParticles();
     loadSections(sections);
+    loadParticles();
 }
 
 function loadParticles() {
@@ -43,6 +43,7 @@ function loadSections(sections) {
         let link = value.comingsoon ? 
             `<span>Скоро</span>` : 
             `<a href="${value.link}">${value.description}</a>`;
+        let progress = 100 * ((index + 1) / array.length);
         
         let mask = document.createElement("div");
         mask.className = 'mask';
@@ -50,11 +51,14 @@ function loadSections(sections) {
         mask.innerHTML = (
             `<div class="section">\n` +
                 `<h2 class="header">${value.title}</h2>\n` +
-                `<div class="content">\n` +
-                    `${value.content}\n` +
-                    `<div class="link">\n` +
-                        `${link}\n` +
+                `<div class="body">\n` +
+                    `<div class="content">\n` +
+                        `${value.content}\n` +
+                        `<div class="link">\n` +
+                            `${link}\n` +
+                        `</div>\n` +
                     `</div>\n` +
+                    `<div class="progressbar" style="--p: ${progress}%;"></div>\n` +
                 `</div>` +
                 `<div class="footer">\n` +
                     `<a href="#section-${nextIndex}"></a>\n` +

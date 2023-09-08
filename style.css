@@ -11,6 +11,8 @@
     --background-light: hsl(0, 60%, 5%);
     --light: #ff7f5080;
     --animation-duration: 10s;
+    --for-sections: to bottom, transparent 0%, black 10vmin, black calc(100% - 10vmin), transparent 100%;
+    --for-content: to bottom, transparent 0%, black 5vmin, black calc(100% - 15vmin), transparent 100%;
 }
 
 * {
@@ -22,6 +24,7 @@
 
 body {
     color: white;
+    font-size: min(1.5em, 2.5vmin + 0.25em);
     font-family: 'Kurale';
     background: var(--default-background);
     background-attachment: fixed;
@@ -47,8 +50,14 @@ a, a:is(:link, :visited, :hover, :active) {
     position: fixed;
 }
 
+#image {
+    aspect-ratio: 1 / 1;
+    width: 90vmin;
+}
+
 #info {
     display: block;
+    pointer-events: none;
     overflow: visible scroll;
     scroll-behavior: smooth;
     scroll-snap-type: y mandatory;
@@ -62,7 +71,7 @@ a, a:is(:link, :visited, :hover, :active) {
 .mask {
     width: 100%;
     height: 100%;
-    scroll-snap-align: center;
+    scroll-snap-align: start;
     scroll-snap-stop: always;
     clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
     -webkit-mask-image: -webkit-linear-gradient(var(--for-sections));
@@ -71,38 +80,33 @@ a, a:is(:link, :visited, :hover, :active) {
 }
 
 .section {
+    width: 100vmin;
     top: 0;
     bottom: 0;
-    pointer-events: none;
     display: flex;
     flex-direction: column;
 }
 
-.mask:last-child .section .footer a {
-    border-width: var(--button-border) 0 0 var(--button-border);
-}
-
-@keyframes button-bounce {
-    0%, 100% {
-        translate: 0 -50%;
-    }
-    50% {
-        translate: 0;
-    }
-}
-
 .header {
     display: block;
-    position: absolute;
     text-align: center;
     filter: drop-shadow(0 0 5vmin black) drop-shadow(0 0 5vmin black);
     z-index: 1;
+    height: fit-content;
+}
+
+.body {
+    height: 100%;
+    display: block flex;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .content {
     pointer-events: all;
-    height: 100%;
-    display: flex;
+    padding: 10vmin 2.5vmin;
+    width: 100%;
+    display: block flex;
     flex-direction: column;
     justify-content: center;
     gap: 0.5em;
@@ -118,12 +122,35 @@ a, a:is(:link, :visited, :hover, :active) {
 }
 
 .content p {
+    text-align: justify;
     text-indent: 15%;
     text-shadow: 0 0 1em black, 0 0 1em black, 0 0 2em black, 0 0 2em black;
 }
 
-.content p:first-of-type {
-    margin-top: var(--indent);
+.progressbar {
+    position: relative;
+    margin: 15vmin 1.5vmin;
+    min-width: .25vmin;
+    --progress: to bottom, wheat var(--p), transparent var(--p);
+    background: linear-gradient(var(--progress));
+}
+
+.progressbar::before, .progressbar::after {
+    content: "";
+    position: absolute;
+    width: 500%;
+    left: -200%;
+    aspect-ratio: 1 / 1;
+    background: wheat;
+    clip-path: polygon(0% 50%, 50% 0%, 100% 50%, 50% 100%);
+}
+
+.progressbar::before {
+    top: -1%;
+}
+
+.progressbar::after {
+    bottom: -1%;
 }
 
 .link {
@@ -149,7 +176,7 @@ a, a:is(:link, :visited, :hover, :active) {
 
 .link a:is(:hover, :focus, :active) {
     text-shadow: 0 0 1em coral, 0 0 2em coral, 0 0 3em coral;
-    scale: .95;
+    transform: scale(.95);
 }
 
 .link span {
@@ -157,6 +184,7 @@ a, a:is(:link, :visited, :hover, :active) {
 }
 
 .footer {
+    min-height: 10vmin;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -166,11 +194,10 @@ a, a:is(:link, :visited, :hover, :active) {
     pointer-events: all;
     aspect-ratio: 1 / 1;
     height: 50%;
-    rotate: 45deg;
     border: 0 solid white;
-    border-width: 0 var(--button-border) var(--button-border) 0;
-    filter: drop-shadow(0px 0px 1em coral) drop-shadow(0px 0px 2em coral);
-    animation: button-bounce calc(var(--animation-duration) / 2) infinite ease-in-out;
+    border-width: 0 2.75vmin 2.75vmin 0;
+    filter: drop-shadow(0 0 1em coral) drop-shadow(0 0 2em coral);
+    animation: footer-button-bounce calc(var(--animation-duration) / 2) infinite ease-in-out;
     transition: all 0.2s linear;
 }
 
@@ -179,7 +206,33 @@ a, a:is(:link, :visited, :hover, :active) {
 }
 
 .footer a:is(:hover, :focus, :active) {
-    background: white;
+    border-width: 0 2vmin 2vmin 0;
+}
+
+.mask:last-child .section .footer a {
+    border-width: 2.75vmin 0 0 2.75vmin;
+}
+
+.mask:last-child .section .footer a:is(:hover, :focus, :active) {
+    border-width: 2vmin 0 0 2vmin;
+}
+
+@keyframes button-bounce {
+    0%, 100% {
+        transform: translate(0, -50%);
+    }
+    50% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes footer-button-bounce {
+    0%, 100% {
+        transform: translate(0, -50%) rotate(45deg);
+    }
+    50% {
+        transform: translate(0, 0) rotate(45deg);
+    }
 }
 
 /* ----------------------- */
@@ -194,15 +247,14 @@ a, a:is(:link, :visited, :hover, :active) {
     width: var(--s);
     z-index: var(--z);
     aspect-ratio: 1 / 1;
-    rotate: 45deg;
     background: white;
-    box-shadow: 0px 0px 3vmin coral, 0px 0px 5vmin coral;
+    box-shadow: 0 0 3vmin coral, 0 0 5vmin coral;
     animation: spark var(--d) infinite linear;
 }
 
 @keyframes spark {
     0% {
-        translate: var(--x1) var(--y1);
+        transform: translate(var(--x1), var(--y1)) rotate(45deg);
         opacity: 0;
     }
     10%, 30%, 50%, 70%, 90% {
@@ -212,7 +264,7 @@ a, a:is(:link, :visited, :hover, :active) {
         opacity: 0.5;
     }
     100% {
-        translate: var(--x2) var(--y2);
+        transform: translate(var(--x2), var(--y2)) rotate(45deg);
         opacity: 0;
     }
 }
@@ -241,7 +293,7 @@ a, a:is(:link, :visited, :hover, :active) {
 }
 
 svg {
-    filter: drop-shadow(0px 0px 1vmax var(--light));
+    filter: drop-shadow(0 0 1vmax var(--light));
     display: block;
     margin: auto 0;
 }
@@ -276,9 +328,9 @@ path.cape {
 }
 
 @keyframes head-move { 
-	0%, 100% {transform: translate(0px, 0px) rotate(0);
+	0%, 100% {transform: translate(0, 0) rotate(0);
 	} 
 	50% {
-		transform: translate(0px, -0.35px) rotate(-2.5deg);
+		transform: translate(0, -0.35px) rotate(-2.5deg);
 	}
 }

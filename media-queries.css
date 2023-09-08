@@ -1,22 +1,7 @@
 @media screen and (orientation: landscape) {
-    :root {
-        --for-sections: to bottom, transparent 0%, black 10vmin, black calc(100% - 10vmin), transparent 100%;
-        --button-border: 2.75vmin;
-
-        --for-content: to bottom, transparent 0%, transparent 7.5vmin, black 12.5vmin, black calc(100% - 15vmin), transparent 100%;
-        --indent: 10vmin;
-    }
-
-    body {
-        font-size: min(1.5em, 2.5vmin + 0.25em);
-    }
-    
     #image {
-        position: fixed;
         bottom: clamp(0px, 100vmax - 150vmin, 5vmin);
         right: min(50vmax, 100vmax - 90vmin);
-        aspect-ratio: 1 / 1;
-        width: 90vmin;
     }
     
     #info {
@@ -26,62 +11,21 @@
     }
     
     .section {
-        width: 100vmin;
         padding: 7.5vmin 2.5vmin clamp(15vmin, 100vmin - 70vmax, 30vmin) clamp(0px, 100vmin - 70vmax, 30vmin);
-    }
-
-    .section .header {
-        inset: 10vmin 2.5vmin auto clamp(0px, 100vmin - 70vmax, 30vmin);
-    }
-    
-    .section .content {
-        padding: var(--indent) 2.5vmin;
-    }
-
-    .section .footer {
-        min-height: 10vmin;
     }
 }
 
 @media screen and (orientation: portrait) {
-    :root {
-        --for-sections: to bottom, transparent 0%, black 10vmin, black calc(100% - 10vmin), transparent 100%;
-        --button-border: 2.75vmin;
-
-        --for-content: to bottom, transparent 0%, transparent 7.5vmin, black 12.5vmin, black calc(100% - 15vmin), transparent 100%;
-        --indent: 10vmin;
-    }
-
-    body {
-        font-size: min(1em, 3vmin + 0.25em);
-    }
-    
     #image {
         left: 0;
         bottom: 0;
-        aspect-ratio: 1 / 1;
-        width: 90vmin;
     }
     
     #info {
         inset: 0;
     }
 
-
     .section {
-        width: 100vmin;
         padding: 7.5vmin 2.5vmin 30vmin 30vmin;
-    }
-
-    .header {
-        inset: 10vmin 2.5vmin auto 30vmin;
-    }
-    
-    .content {
-        padding: var(--indent) 2.5vmin;
-    }
-
-    .footer {
-        min-height: 10vmin;
     }
 }
