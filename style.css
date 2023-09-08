@@ -135,14 +135,6 @@ a, a:is(:link, :visited, :hover, :active) {
     background: linear-gradient(var(--progress));
 }
 
-.progressbar::before {
-    top: -1%;
-}
-
-.progressbar::after {
-    bottom: -1%;
-}
-
 .link {
     display: flex;
     justify-content: center;
