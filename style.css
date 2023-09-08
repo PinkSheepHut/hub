@@ -131,18 +131,8 @@ a, a:is(:link, :visited, :hover, :active) {
     position: relative;
     margin: 15vmin 1.5vmin;
     min-width: .25vmin;
-    --progress: to bottom, wheat var(--p), transparent var(--p);
+    --progress: to bottom, wheat var(--p), rgba(245, 222, 179, .5) var(--p);
     background: linear-gradient(var(--progress));
-}
-
-.progressbar::before, .progressbar::after {
-    content: "";
-    position: absolute;
-    width: 500%;
-    left: -200%;
-    aspect-ratio: 1 / 1;
-    background: wheat;
-    clip-path: polygon(0% 50%, 50% 0%, 100% 50%, 50% 100%);
 }
 
 .progressbar::before {
