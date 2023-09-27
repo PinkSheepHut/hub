@@ -1,6 +1,8 @@
 function onload() {
-    loadSections(sections);
     loadParticles();
+    fetch("data.json")
+        .then(response => response.json())
+        .then(result => loadSections(result.sections));
 }
 
 function loadParticles() {
